@@ -2,13 +2,14 @@ from github import Github
 import subprocess
 import time
 
-g = Github('a3572ad361f28478ba5bfe28a066c0753e209efa')
+g = Github('51cba5a0fdb61223f36ba149465b19c65b3af9ca')
 
 repositories = set()
 
 content_files = g.search_repositories(query='org:adafruit')
 for content in content_files:
     if 'circuitpython' in content.full_name.lower():
+        print(content.full_name)
         repositories.add(content.full_name)
     rate_limit = g.get_rate_limit()
     if rate_limit.search.remaining == 0:
